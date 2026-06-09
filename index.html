@@ -1,0 +1,33 @@
+<body style="background-color: black; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+  <div style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; padding: 24px; box-sizing: border-box;">
+    <button id="startButton" type="button" style="padding: 12px 18px; border: none; border-radius: 8px; background: #fff; color: #111; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.35);">Не тикай мене :[</button>
+    <div id="imageContainer" style="display: none; width: 100%; max-width: 900px;">
+      <img src="image.png" alt="Artwork" style="width:100%; display:block; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.45);">
+    </div>
+  </div>
+
+  <audio id="bgMusic" src="03. Decayed.mp3" preload="auto" loop></audio>
+
+  <script>
+    const bgMusic = document.getElementById('bgMusic');
+    const startButton = document.getElementById('startButton');
+    const imageContainer = document.getElementById('imageContainer');
+
+    bgMusic.volume = 0.35;
+
+    async function startMusic() {
+      try {
+        await bgMusic.play();
+        console.log('Audio is looping successfully!');
+      } catch (error) {
+        console.warn('Playback was blocked until user interaction:', error);
+      }
+    }
+
+    startButton.addEventListener('click', async () => {
+      imageContainer.style.display = 'block';
+      await startMusic();
+      startButton.style.display = 'none';
+    });
+  </script>
+</body>
